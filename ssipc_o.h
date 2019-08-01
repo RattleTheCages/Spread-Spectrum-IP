@@ -1,4 +1,4 @@
-/**  ssipc.h  ******************************************************************
+/**  ssipc_o.h  ****************************************************************
 
             Spread-Spectrum-IP
 
@@ -18,7 +18,7 @@
 #include "thread_o.h"
 #include "client_o.h"
 #include "queue_o.h"
-#include "ssip-packet.h"
+#include "ssip-packet_o.h"
 
 
 class ssipc_o : public client_o, private thread_o  {
@@ -28,10 +28,10 @@ class ssipc_o : public client_o, private thread_o  {
     queue_o<ssip_packet_o>  Rqp;
 
   public:
-    ssipc_o();                                      // Default constructor.
-    ssipc_o(const ssipc_o&);                        // Copy constructor.
-    virtual   ~ssipc_o();                           // Default destructor.
-    ssipc_o&   operator = (const ssipc_o&);         // Assignment operator.
+    ssipc_o();
+    ssipc_o(const ssipc_o&);
+    virtual   ~ssipc_o();
+    ssipc_o&   operator = (const ssipc_o&);
 
     int        state() const;
 

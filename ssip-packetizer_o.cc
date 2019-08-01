@@ -1,4 +1,4 @@
-/**  ssip-packetizer.cc  *******************************************************
+/**  ssip-packetizer_o.cc  *****************************************************
 
             Spread-Spectrum-IP
 
@@ -13,9 +13,7 @@
 *******************************************************************************/
 
 
-#include <strings.h>
-#include </usr/include/string.h>
-#include "ssip-packetizer.h"
+#include "ssip-packetizer_o.h"
 #include "rand_o.h"
 
 
@@ -25,22 +23,21 @@ ssip_packetizer_o::~ssip_packetizer_o()  {}
 
 void ssip_packetizer_o::packetize(const string_o& message, queue_o<ssip_packet_o>& listOfPackets)  {
 
-    rand_o    rand;
-    ssip_packet_o* ssip3;
-    string_o  msg;
-    string_o  msc;
-    int       seq = 0;
-    int       cut = 0;
+    rand_o          rand;
+    ssip_packet_o*  ssip3;
+    string_o        msg;
+    string_o        msc;
+    int             seq = 0;
+    int             cut = 0;
 
     msg = message;
 
     while(msg.length() > 0)  {
-        seq++;
 
-        cut = rand.i(22) + 22;
+        cut = rand.i(22) + 22;      // Cut the message into random sized pieces.
 
         ssip3 = new ssip_packet_o();
-        ssip3->setSequence(seq);
+        ssip3->setSequence(seq++);
         msc = msg;
         msc.cut(msg.length() < cut ? msg.length() : cut);
         ssip3->setRawData(msc.string(), msc.length());

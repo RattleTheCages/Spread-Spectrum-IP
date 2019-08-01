@@ -1,4 +1,4 @@
-/**  ssip-packetizer.h  ********************************************************
+/**  ssip-packetizer_o.h  ******************************************************
 
             Spread-Spectrum-IP
 
@@ -17,7 +17,7 @@
 
 #include "string_o.h"
 #include "queue_o.h"
-#include "ssip-packet.h"
+#include "ssip-packet_o.h"
 
 
 class ssip_packetizer_o  {
@@ -32,8 +32,8 @@ class ssip_packetizer_o  {
     virtual             ~ssip_packetizer_o();
     ssip_packetizer_o&   operator = (const ssip_packetizer_o&);
 
-    void  packetize(const string_o&, queue_o<ssip_packet_o>&);
 
+    static  void  packetize(const string_o&, queue_o<ssip_packet_o>&);
 };
 
 

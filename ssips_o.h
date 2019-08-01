@@ -1,4 +1,4 @@
-/**  ssips.h  ******************************************************************
+/**  ssips_o.h  ****************************************************************
 
             Spread-Spectrum-IP
 
@@ -21,10 +21,10 @@ class ssips_o : public pserver_o  {
     int        State;
 
   public:
-    ssips_o();                                      // Default constructor.
-    ssips_o(const ssips_o&);                        // Copy constructor.
-    virtual   ~ssips_o();                           // Default destructor.
-    ssips_o&   operator = (const ssips_o&);         // Assignment operator.
+    ssips_o();
+    ssips_o(const ssips_o&);
+    virtual   ~ssips_o();
+    ssips_o&   operator = (const ssips_o&);
 
     int        state() const;
 };

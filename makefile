@@ -28,8 +28,8 @@ LINKFLAGS   = -pthread -L$(PLIB_DIR)
 
 EXECS       = ssips ssipc
 
-SSIP_HEADERS= ssip-packet.h ssip-packetizer.h
-SSIP_OBJS   = ssip-packet.o ssip-packetizer.o
+SSIP_HEADERS= ssip-packet_o.h ssip-packetizer_o.h
+SSIP_OBJS   = ssip-packet_o.o ssip-packetizer_o.o
 
 
 ################################################################################
@@ -48,27 +48,27 @@ all:
 ##                                                                            ##
 ################################################################################
 
-ssip-packet.o: ssip-packet.h ssip-packet.cc
-	$(CC) $(OBJFLAGS) -c ssip-packet.cc
+ssip-packet_o.o: ssip-packet_o.h ssip-packet_o.cc
+	$(CC) $(OBJFLAGS) -c ssip-packet_o.cc
 
-ssip-packetizer.o: ssip-packetizer.h ssip-packetizer.cc
-	$(CC) $(OBJFLAGS) -c ssip-packetizer.cc
+ssip-packetizer_o.o: ssip-packetizer_o.h ssip-packetizer_o.cc
+	$(CC) $(OBJFLAGS) -c ssip-packetizer_o.cc
 
-ssips.o: ssips.h ssips.cc $(SSIP_HEADERS)
-	$(CC) $(OBJFLAGS) -c ssips.cc
+ssips_o.o: ssips_o.h ssips_o.cc $(SSIP_HEADERS)
+	$(CC) $(OBJFLAGS) -c ssips_o.cc
 
-ssipc.o: ssipc.h ssipc.cc $(SSIP_HEADERS)
-	$(CC) $(OBJFLAGS) -c ssipc.cc
+ssipc_o.o: ssipc_o.h ssipc_o.cc $(SSIP_HEADERS)
+	$(CC) $(OBJFLAGS) -c ssipc_o.cc
 
-ssipc: ssipc.o $(SSIP_OBJS)
-	$(CC) $(LINKFLAGS) -o ssipc ssipc.o                                    \
+ssipc: ssipc_o.o $(SSIP_OBJS)
+	$(CC) $(LINKFLAGS) -o ssipc ssipc_o.o                                  \
         $(SSIP_OBJS)                                                           \
         $(SSERVER_DIR)sserver_o.a                                              \
         $(PLIB_DIR)plib_o.a
 
 
-ssips: ssips.o $(SSIP_OBJS)
-	$(CC) $(LINKFLAGS) -o ssips ssips.o                                    \
+ssips: ssips_o.o $(SSIP_OBJS)
+	$(CC) $(LINKFLAGS) -o ssips ssips_o.o                                  \
         $(SSIP_OBJS)                                                           \
         $(PSERVER_DIR)pserver_o.a                                              \
         $(SSERVER_DIR)sserver_o.a                                              \

@@ -1,4 +1,4 @@
-/**  ssip-packet.h  ************************************************************
+/**  ssip-packet_o.h  **********************************************************
 
             Spread-Spectrum-IP
 
@@ -26,10 +26,10 @@ class ssip_packet_o  {
     char                rawData[2048];
 
   public:
-    ssip_packet_o();                                    // Default constructor.
-    ssip_packet_o(const ssip_packet_o&);                // Copy constructor.
-    virtual         ~ssip_packet_o();                   // Default destructor.
-    ssip_packet_o&   operator = (const ssip_packet_o&); // Assignment operator.
+    ssip_packet_o();
+    ssip_packet_o(const ssip_packet_o&);
+    virtual         ~ssip_packet_o();
+    ssip_packet_o&   operator = (const ssip_packet_o&);
 
     const char*      RawData() const;
     const char*      Name() const;

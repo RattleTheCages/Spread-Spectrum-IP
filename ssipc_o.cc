@@ -1,4 +1,4 @@
-/**  ssipc.cc  *****************************************************************
+/**  ssipc_o.cc  ***************************************************************
 
 
             Spread-Spectrum-IP            
@@ -13,17 +13,13 @@
 *******************************************************************************/
 
 
-#include "TheRaven.h"
-#include "rand_o.h"
-#include "queue_o.h"
-#include "string_o.h" 
-#include "time_o.h" 
 #include "log_o.h" 
-#include "client_o.h"
+#include "rand_o.h"
 
-#include "ssipc.h"
-#include "ssip-packet.h"
-#include "ssip-packetizer.h"
+#include "TheRaven_o.h"
+#include "ssipc_o.h"
+#include "ssip-packet_o.h"
+#include "ssip-packetizer_o.h"
 
 
 log_o   log;
