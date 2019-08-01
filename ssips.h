@@ -14,7 +14,7 @@
 #ifndef SSIPServerOBJECT_API
 #define SSIPServerOBJECT_API
 
-#include "pserver.h"
+#include "pserver_o.h"
 
 class ssips_o : public pserver_o  {
   protected:

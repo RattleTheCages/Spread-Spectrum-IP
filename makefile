@@ -1,10 +1,10 @@
 ################################################################################
 ################################################################################
 ##                                                                            ##
-##12.31.1999  Performance Server Library v2.000  Daniel Huffman               ##
+##    Spread-Spectrum-IP                                                      ##
 ##                                                                            ##
+##    A satircal internet protocol attempting to styme packet sniffers.       ##
 ##                                                                            ##
-##  Multithreaded Performace Server Library Objects                           ##
 ##                                                                            ##
 ##                                                                            ##
 ##    Please note.  The header file dependences are not complete in this      ##
@@ -15,14 +15,13 @@
 ################################################################################
 
 
-# Use a complier that is POSIX threads enabled.
 CC          = g++
 
 SSERVER_DIR = ../Code-from-the-90s/projects/library/sserver/
 PSERVER_DIR = ../Code-from-the-90s/projects/library/pserver/
 PLIB_DIR    = ../Code-from-the-90s/projects/library/lib/
 
-OBJFLAGS    = -g -I$(PLIB_DIR)/thread -I$(PLIB_DIR)/string -I$(PLIB_DIR)/log -I$(PLIB_DIR)/error -I$(PLIB_DIR)/memory -I$(PLIB_DIR)/other -I$(PLIB_DIR)/cron -I$(PSERVER_DIR) -I$(SSERVER_DIR)/telenet
+OBJFLAGS    = -g -I$(PLIB_DIR)/thread -I$(PLIB_DIR)/string -I$(PLIB_DIR)/log -I$(PLIB_DIR)/error -I$(PLIB_DIR)/memory -I$(PLIB_DIR)/other -I$(PLIB_DIR)/cron -I$(PSERVER_DIR) -I$(SSERVER_DIR)/telenet -I$(SSERVER_DIR)/dataObjects -I$(PSERVER_DIR)/directors -I$(PSERVER_DIR)/gate -I$(PSERVER_DIR)/carapace
 LINKFLAGS   = -pthread -L$(PLIB_DIR)
 
 
@@ -46,7 +45,7 @@ all:
 
 
 ################################################################################
-## Perfromance Mulithreaded Server Objects.                                   ##
+##                                                                            ##
 ################################################################################
 
 ssip-packet.o: ssip-packet.h ssip-packet.cc
@@ -64,29 +63,16 @@ ssipc.o: ssipc.h ssipc.cc $(SSIP_HEADERS)
 ssipc: ssipc.o $(SSIP_OBJS)
 	$(CC) $(LINKFLAGS) -o ssipc ssipc.o                                    \
         $(SSIP_OBJS)                                                           \
-        $(SSERVER_DIR)client.o                                                 \
-        $(SSERVER_DIR)sendrecv.o                                               \
-        $(PLIB_DIR)*.o
+        $(SSERVER_DIR)sserver_o.a                                              \
+        $(PLIB_DIR)plib_o.a
 
 
 ssips: ssips.o $(SSIP_OBJS)
 	$(CC) $(LINKFLAGS) -o ssips ssips.o                                    \
         $(SSIP_OBJS)                                                           \
-        $(SSERVER_DIR)input.o                                                  \
-        $(SSERVER_DIR)output.o                                                 \
-        $(SSERVER_DIR)server.o                                                 \
-        $(SSERVER_DIR)sendrecv.o                                               \
-        $(PSERVER_DIR)pserver.o                                                \
-        $(PSERVER_DIR)queueDirector.o                                          \
-        $(PSERVER_DIR)executionDirector.o                                      \
-        $(PSERVER_DIR)threadDirector.o                                         \
-        $(PSERVER_DIR)serverDirector.o                                         \
-        $(PSERVER_DIR)inputgate.o                                              \
-        $(PSERVER_DIR)outputgate.o                                             \
-        $(PSERVER_DIR)workthread.o                                             \
-        $(PSERVER_DIR)carapace.o                                               \
-        $(PLIB_DIR)*.o
-
+        $(PSERVER_DIR)pserver_o.a                                              \
+        $(SSERVER_DIR)sserver_o.a                                              \
+        $(PLIB_DIR)plib_o.a
 
 
 

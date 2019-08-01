@@ -15,7 +15,7 @@
 #define SSIPPacketOBJECT_API
 
 
-#include "string.h"
+#include "string_o.h"
 
 
 class ssip_packet_o  {

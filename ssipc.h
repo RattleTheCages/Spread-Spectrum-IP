@@ -14,10 +14,10 @@
 #define SSIPClientOBJECT_API
 
 
-#include "string.h"
-#include "thread.h"
-#include "client.h"
-#include "queue.h"
+#include "string_o.h"
+#include "thread_o.h"
+#include "client_o.h"
+#include "queue_o.h"
 #include "ssip-packet.h"
 
 

@@ -15,8 +15,8 @@
 #ifndef SSIPPacketizerOBJECT_API
 #define SSIPPacketizerOBJECT_API
 
-#include "string.h"
-#include "queue.h"
+#include "string_o.h"
+#include "queue_o.h"
 #include "ssip-packet.h"
 
 

@@ -14,12 +14,12 @@
 
 
 #include "TheRaven.h"
-#include "rand.h"
-#include "queue.h"
-#include "string.h" 
-#include "time.h" 
-#include "log.h" 
-#include "client.h"
+#include "rand_o.h"
+#include "queue_o.h"
+#include "string_o.h" 
+#include "time_o.h" 
+#include "log_o.h" 
+#include "client_o.h"
 
 #include "ssipc.h"
 #include "ssip-packet.h"

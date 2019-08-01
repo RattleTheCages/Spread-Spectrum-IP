@@ -16,7 +16,7 @@
 #include <strings.h>
 #include </usr/include/string.h>
 #include "ssip-packetizer.h"
-#include "rand.h"
+#include "rand_o.h"
 
 
 ssip_packetizer_o::ssip_packetizer_o()  {}
