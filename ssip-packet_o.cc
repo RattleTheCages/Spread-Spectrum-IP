@@ -13,23 +13,21 @@
 
 
 #include "ssip-packet_o.h"
-
-#include <strings.h> //bzero
-#include </usr/include/string.h> //memcpy
+#include "succession_o.h"
 
 
 ssip_packet_o::ssip_packet_o()  {
     name = "ssip-packet_o";
     sequence = 0;
     dataLength = 0;
-    ::bzero(rawData, 2048);
+    succession_o::bzero(rawData, 2048);
 }
 
 ssip_packet_o::~ssip_packet_o()  {}
 
 void ssip_packet_o::setRawData(const char* raw, const int dl)  {
     dataLength = dl;
-    ::memcpy(rawData, raw, dataLength);
+    succession_o::memcpy(rawData, raw, dataLength);
 }
 
 void ssip_packet_o::Serialize(string_o& sout)  {
@@ -54,8 +52,8 @@ void ssip_packet_o::Deserialize(string_o& sin)  {
     dataLength = sin.stoi();
     sin.upcut("rawData=");
 
-    ::bzero(rawData, 2048);
-    ::memcpy(rawData, sin.string(), dataLength);
+    succession_o::bzero(rawData, 2048);
+    succession_o::memcpy(rawData, sin.string(), dataLength);
 }
 
 
