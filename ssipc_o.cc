@@ -1,14 +1,14 @@
 /**  ssipc_o.cc  ***************************************************************
 
 
-            Spread-Spectrum-IP            
+            Spread-Spectrum-IP
 
 
             Client
 
 
 
-                                                  Copyright Daniel Huffman 2019
+                           Copyright 2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

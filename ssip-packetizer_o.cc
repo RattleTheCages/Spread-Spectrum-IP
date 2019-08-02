@@ -7,8 +7,8 @@
 
 
 
-                                                  Copyright Daniel Huffman 2019
 
+                           Copyright 2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
