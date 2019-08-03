@@ -50,6 +50,7 @@ void ssipc_o::send(const string_o& message)  {
 
 
     ssip_packetizer_o::packetize(message, qp);
+    ssip_packetizer_o::disorder(qp);
 
     while(qp.cardinality() != 0)  {
 
