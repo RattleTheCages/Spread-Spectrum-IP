@@ -39,9 +39,8 @@ int ssipc_o::connect(const string_o& hostname)  {
 }
 
 void ssipc_o::send(const string_o& message)  {
-    ssip_packetizer_o       ssipptz;
-    ssip_packet_o*          ssip3;
-    queue_o<ssip_packet_o>  qp;
+    list_o<ssip_packet_o> qp;
+    ssip_packet_o*        ssip3;
     int         port;
     int         rc;
     string_o    ss;
@@ -50,7 +49,7 @@ void ssipc_o::send(const string_o& message)  {
     rand_o      rand;
 
 
-    ssipptz.packetize(message, qp);
+    ssip_packetizer_o::packetize(message, qp);
 
     while(qp.cardinality() != 0)  {
 

@@ -18,7 +18,6 @@
 
 #include "rand_o"
 #include "bstree_o"
-#include "list_o"
 #include "log_o"
 
 #include "ssip-packetizer_o.h"
@@ -29,7 +28,7 @@ ssip_packetizer_o::ssip_packetizer_o()  {}
 
 ssip_packetizer_o::~ssip_packetizer_o()  {}
 
-void ssip_packetizer_o::packetize(const string_o& message, queue_o<ssip_packet_o>& listOfPackets)  {
+void ssip_packetizer_o::packetize(const string_o& message, list_o<ssip_packet_o>& listOfPackets)  {
 
     rand_o          rand;
     ssip_packet_o*  ssip3;
@@ -57,7 +56,7 @@ void ssip_packetizer_o::packetize(const string_o& message, queue_o<ssip_packet_o
 }
 
 
-void ssip_packetizer_o::reorder(queue_o<ssip_packet_o>& lop)  {
+void ssip_packetizer_o::reorder(list_o<ssip_packet_o>& lop)  {
     bstree_o<ssip_packet_o> pbst;
     ssip_packet_o*          ssip3;
     string_o                sn;
@@ -77,7 +76,7 @@ void ssip_packetizer_o::reorder(queue_o<ssip_packet_o>& lop)  {
 }
 
 
-void ssip_packetizer_o::disorder(queue_o<ssip_packet_o>& lop)  {
+void ssip_packetizer_o::disorder(list_o<ssip_packet_o>& lop)  {
     ssip_packet_o*          ssip3;
     rand_o                  rand;
     int                     monte;
@@ -91,7 +90,7 @@ void ssip_packetizer_o::disorder(queue_o<ssip_packet_o>& lop)  {
             lop.put(ssip3);
         }
 
-        lop.get();
+        ssip3 = lop.get();
         carlo.put(ssip3);
     }
 

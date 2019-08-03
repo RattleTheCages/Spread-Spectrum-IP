@@ -18,7 +18,7 @@
 #define SSIPPacketizerOBJECT_API
 
 #include "string_o"
-#include "queue_o"
+#include "list_o"
 
 #include "ssip-packet_o.h"
 
@@ -36,9 +36,9 @@ class ssip_packetizer_o  {
     ssip_packetizer_o&   operator = (const ssip_packetizer_o&);
 
 
-    static  void  packetize(const string_o&, queue_o<ssip_packet_o>&);
-    static  void  disorder(queue_o<ssip_packet_o>&);
-    static  void  reorder(queue_o<ssip_packet_o>&);
+    static  void  packetize(const string_o&, list_o<ssip_packet_o>&);
+    static  void  disorder(list_o<ssip_packet_o>&);
+    static  void  reorder(list_o<ssip_packet_o>&);
 };
 
 

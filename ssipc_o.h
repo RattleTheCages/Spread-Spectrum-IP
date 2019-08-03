@@ -19,7 +19,7 @@
 #include "string_o"
 #include "thread_o"
 #include "client_o"
-#include "queue_o"
+#include "list_o"
 #include "ssip-packet_o.h"
 
 
@@ -27,7 +27,7 @@ class ssipc_o : public client_o, private thread_o  {
   protected:
     int                     State;
     string_o                Host;
-    queue_o<ssip_packet_o>  Rqp;
+    list_o<ssip_packet_o>   Rqp;
 
   public:
     ssipc_o();
