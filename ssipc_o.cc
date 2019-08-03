@@ -110,7 +110,6 @@ int ssipc_o::receive(string_o& message)  {
 }
 
 
-#include "stack_o.h"
 int main(int argc, char* argv[])  {
     string_o  rs;
     string_o  ls;
@@ -119,52 +118,6 @@ int main(int argc, char* argv[])  {
     string_o  theRaven = TheRaven;
 
     log << "ssipc start.";
-
-
-
-int* ip;
-    stack_o<int> s;
-
-    ip = new int(1);
-    s.push(ip);
-    ip = new int(2);
-    s.push(ip);
-    ip = new int(3);
-    s.push(ip);
-
-ip = s.pop();
-(rs="") << *ip;
-log << rs;
-
-    ip = new int(4);
-    s.push(ip);
-
-    ip = new int(5);
-    s.push(ip);
-
-ip = s.pop();
-(rs="") << *ip;
-log << rs;
-
-ip = s.pop();
-(rs="") << *ip;
-log << rs;
-
-ip = s.pop();
-(rs="") << *ip;
-log << rs;
-
-    ip = new int(6);
-    s.push(ip);
-
-ip = s.pop();
-(rs="") << *ip;
-log << rs;
-
-ip = s.pop();
-(rs="") << *ip;
-log << rs;
-
 
 
     host = argv[1];
