@@ -3,6 +3,8 @@
 
             Spread-Spectrum-IP
 
+            A satircal internet protocol attempting to styme packet sniffers.
+
 
             Client
 
@@ -13,8 +15,8 @@
 *******************************************************************************/
 
 
-#include "log_o.h" 
-#include "rand_o.h"
+#include "log_o" 
+#include "rand_o"
 
 #include "TheRaven_o.h"
 #include "ssipc_o.h"
@@ -53,7 +55,7 @@ void ssipc_o::send(const string_o& message)  {
     while(qp.cardinality() != 0)  {
 
         ssip3 = qp.get();
-        port = rand.i(22)+2201;         // Pick a random port!
+        port = rand.i(32)+2191;         // Pick a random port!
 
         ls = "";
         ls << "***************\n";
@@ -68,7 +70,12 @@ void ssipc_o::send(const string_o& message)  {
         ss = "";
         ssip3->Serialize(ss);
         rc = client_o::connect(Host.string(), port);
-        if(rc)  log << "Connect error.";
+        if(rc)  {
+            log << "Connect error.";
+            qp.put(ssip3);
+            continue;
+        }
+
         client_o::send(ss.string());
 
         yeild();
@@ -79,6 +86,7 @@ void ssipc_o::send(const string_o& message)  {
         ssip3->Deserialize(rs);
         Rqp.put(ssip3);
 
+        yeild();
     }
 
 }
@@ -87,6 +95,9 @@ void ssipc_o::send(const string_o& message)  {
 int ssipc_o::receive(string_o& message)  {
     ssip_packet_o*  ssippp;
     int             dl = 0;
+
+    ssip_packetizer_o::reorder(Rqp);
+    
 
     while(Rqp.cardinality() != 0)  {
         ssippp = Rqp.get();
@@ -99,6 +110,7 @@ int ssipc_o::receive(string_o& message)  {
 }
 
 
+#include "stack_o.h"
 int main(int argc, char* argv[])  {
     string_o  rs;
     string_o  ls;
@@ -107,6 +119,53 @@ int main(int argc, char* argv[])  {
     string_o  theRaven = TheRaven;
 
     log << "ssipc start.";
+
+
+
+int* ip;
+    stack_o<int> s;
+
+    ip = new int(1);
+    s.push(ip);
+    ip = new int(2);
+    s.push(ip);
+    ip = new int(3);
+    s.push(ip);
+
+ip = s.pop();
+(rs="") << *ip;
+log << rs;
+
+    ip = new int(4);
+    s.push(ip);
+
+    ip = new int(5);
+    s.push(ip);
+
+ip = s.pop();
+(rs="") << *ip;
+log << rs;
+
+ip = s.pop();
+(rs="") << *ip;
+log << rs;
+
+ip = s.pop();
+(rs="") << *ip;
+log << rs;
+
+    ip = new int(6);
+    s.push(ip);
+
+ip = s.pop();
+(rs="") << *ip;
+log << rs;
+
+ip = s.pop();
+(rs="") << *ip;
+log << rs;
+
+
 
     host = argv[1];
     if(host.length() < 2)  host = "localhost";

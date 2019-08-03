@@ -2,6 +2,8 @@
 
             Spread-Spectrum-IP
 
+            A satircal internet protocol attempting to styme packet sniffers.
+
 
             Packet Object
 
@@ -15,7 +17,7 @@
 #define SSIPPacketOBJECT_API
 
 
-#include "string_o.h"
+#include "string_o"
 
 
 class ssip_packet_o  {

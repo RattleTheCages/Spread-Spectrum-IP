@@ -2,9 +2,11 @@
 
             Spread-Spectrum-IP
 
+            A satircal internet protocol attempting to styme packet sniffers.
+
 
             Server
-q
+s
 
 
 
@@ -35,7 +37,7 @@ int carapace_o::process(input_o& input, output_o& output)  {
     ssipp.Deserialize(input.message());
 
 
-    ssipp.setName("Pinged");
+    ssipp.setName("mark of ssips_o");
     ssipp.Serialize(out);
     output.setMessage(out.string());
 
@@ -50,35 +52,32 @@ int main(int argc, char* argv[])  {
     int     r = 0;
     ssips_o ssips;
 
-log.setDebugLevel(301);
-log.setDebugLevel(309);
-log.setDebugLevel(302);
-log.setDebugLevel(471);
-log.setDebugLevel(472);
-log.setDebugLevel(451);
-log.setDebugLevel(452);
-log.setDebugLevel(401);
-log.setDebugLevel(402);
-log.setDebugLevel(403);
-log.setDebugLevel(404);
-log.setDebugLevel(405);
-log.setDebugLevel(406);
-log.setDebugLevel(407);
 
         // In the future use random ports...  (And properly check error.)
+    r += ssips.serveport(2191);
+    r += ssips.serveport(2192);
+    r += ssips.serveport(2193);
+    r += ssips.serveport(2194);
+    r += ssips.serveport(2195);             // S
+    r += ssips.serveport(2196);             //  p
+    r += ssips.serveport(2197);             //   r
+    r += ssips.serveport(2198);             //    e
+    r += ssips.serveport(2199);             //     a
+    r += ssips.serveport(2200);             //      d
+
     r += ssips.serveport(2201);
-    r += ssips.serveport(2202);
-    r += ssips.serveport(2203);
-    r += ssips.serveport(2204);
-    r += ssips.serveport(2205);
-    r += ssips.serveport(2206);
-    r += ssips.serveport(2207);
-    r += ssips.serveport(2208);
-    r += ssips.serveport(2209);
+    r += ssips.serveport(2202);             // S
+    r += ssips.serveport(2203);             //  p
+    r += ssips.serveport(2204);             //   e
+    r += ssips.serveport(2205);             //    c
+    r += ssips.serveport(2206);             //     t
+    r += ssips.serveport(2207);             //      r
+    r += ssips.serveport(2208);             //       u
+    r += ssips.serveport(2209);             //        m
     r += ssips.serveport(2210);
     r += ssips.serveport(2211);
-    r += ssips.serveport(2212);
-    r += ssips.serveport(2213);
+    r += ssips.serveport(2212);             // I
+    r += ssips.serveport(2213);             //  P
     r += ssips.serveport(2214);
     r += ssips.serveport(2215);
     r += ssips.serveport(2216);
@@ -89,6 +88,7 @@ log.setDebugLevel(407);
     r += ssips.serveport(2221);
     r += ssips.serveport(2222);
     if(r)  return  r;
+
 
     ssips.persist();
 

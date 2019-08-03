@@ -2,6 +2,8 @@
 
             Spread-Spectrum-IP
 
+            A satircal internet protocol attempting to styme packet sniffers.
+
 
             Packet Object
 

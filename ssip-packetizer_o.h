@@ -2,6 +2,8 @@
 
             Spread-Spectrum-IP
 
+            A satircal internet protocol attempting to styme packet sniffers.
+
 
             Packetizer Object
 
@@ -15,8 +17,9 @@
 #ifndef SSIPPacketizerOBJECT_API
 #define SSIPPacketizerOBJECT_API
 
-#include "string_o.h"
-#include "queue_o.h"
+#include "string_o"
+#include "queue_o"
+
 #include "ssip-packet_o.h"
 
 
@@ -34,6 +37,8 @@ class ssip_packetizer_o  {
 
 
     static  void  packetize(const string_o&, queue_o<ssip_packet_o>&);
+    static  void  disorder(queue_o<ssip_packet_o>&);
+    static  void  reorder(queue_o<ssip_packet_o>&);
 };
 
 

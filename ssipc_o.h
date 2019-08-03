@@ -2,6 +2,8 @@
 
             Spread-Spectrum-IP
 
+            A satircal internet protocol attempting to styme packet sniffers.
+
 
             Client
 
@@ -14,10 +16,10 @@
 #define SSIPClientOBJECT_API
 
 
-#include "string_o.h"
-#include "thread_o.h"
-#include "client_o.h"
-#include "queue_o.h"
+#include "string_o"
+#include "thread_o"
+#include "client_o"
+#include "queue_o"
 #include "ssip-packet_o.h"
 
 

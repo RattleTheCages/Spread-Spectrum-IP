@@ -12,7 +12,7 @@
 ##    before executing `make all'.                                            ##
 ##                                                                            ##
 ##                                                                            ##
-##                         Copyright 2019 Daniel Huffman all rights reserved. ##
+##                       Copyright 2019  Daniel Huffman  All rights reserved. ##
 ##                                                                            ##
 ################################################################################
 ################################################################################
@@ -22,8 +22,10 @@ CC          = g++
 
 PSERVER_DIR = ../Code-from-the-90s/projects/library/pserver/
 PLIB_DIR    = ../Code-from-the-90s/projects/library/lib/
+PLIB_INCLUDE= ../Code-from-the-90s/projects/library/include
 
-OBJFLAGS    = -g -I$(PLIB_DIR)/thread -I$(PLIB_DIR)/string -I$(PLIB_DIR)/log -I$(PLIB_DIR)/error -I$(PLIB_DIR)/memory -I$(PLIB_DIR)/other -I$(PLIB_DIR)/cron -I$(PSERVER_DIR) -I$(PSERVER_DIR)/telenet -I$(PSERVER_DIR)/dataObjects -I$(PSERVER_DIR)/directors -I$(PSERVER_DIR)/gate -I$(PSERVER_DIR)/carapace
+OBJFLAGS    = -g -I$(PLIB_DIR)/thread -I$(PLIB_DIR)/string -I$(PLIB_DIR)/log -I$(PLIB_DIR)/error -I$(PLIB_DIR)/memory -I$(PLIB_DIR)/other -I$(PLIB_DIR)/cron -I$(PSERVER_DIR) -I$(PSERVER_DIR)/telenet -I$(PSERVER_DIR)/dataObjects -I$(PSERVER_DIR)/directors -I$(PSERVER_DIR)/gate -I$(PSERVER_DIR)/carapace -I$(PLIB_INCLUDE)
+
 LINKFLAGS   = -pthread -L$(PLIB_DIR)
 
 
