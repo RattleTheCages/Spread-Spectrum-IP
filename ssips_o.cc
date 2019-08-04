@@ -6,7 +6,8 @@
 
 
             Server
-s
+z
+
 
 
 
@@ -22,26 +23,27 @@ sysinfo_o   sysinfo;
 carapace_o  carapace;
 
 
-ssips_o::ssips_o()  {
-    State = 2;
-}
+ssips_o::ssips_o() : State(2) {}
 
 ssips_o::~ssips_o()  {}
 
 
 int carapace_o::process(input_o& input, output_o& output)  {
     string_o      out;
+    string_o      ls;
     ssip_packet_o ssipp;
 
 
     ssipp.Deserialize(input.message());
 
 
-    ssipp.setName("mark of ssips_o");
+    ssipp.setName("The mark of ssips_o.");
     ssipp.Serialize(out);
     output.setMessage(out.string());
 
-    log << "ssips_o::carapace_o::process() finished.";
+    ls << "ssips_o::carapace_o::process( socket(" << input.socket() << "), sequence(";
+    ls << ssipp.Sequence() << ") ) finished.";
+    log << ls;
 
     return  0;
 }
