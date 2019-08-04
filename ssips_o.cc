@@ -2,11 +2,11 @@
 
             Spread-Spectrum-IP
 
-            A satircal internet protocol attempting to styme packet sniffers.
+            A satirical internet protocol attempting to stymie packet sniffers.
 
 
             Server
-z
+x
 
 
 
