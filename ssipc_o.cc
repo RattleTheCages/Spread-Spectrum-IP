@@ -10,6 +10,8 @@
 
 
 
+
+
                            Copyright 2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -26,9 +28,7 @@
 
 log_o   log;
 
-ssipc_o::ssipc_o()  {
-    State = 2;
-}
+ssipc_o::ssipc_o():State(2)  {}
 
 ssipc_o::~ssipc_o()  {}
 
@@ -52,9 +52,8 @@ void ssipc_o::send(const string_o& message)  {
     ssip_packetizer_o::packetize(message, qp);
     ssip_packetizer_o::disorder(qp);
 
-    while(qp.cardinality() != 0)  {
+    while(ssip3 = qp++)  {
 
-        ssip3 = qp.get();
         port = rand.i(32)+2191;         // Pick a random port!
 
         ls = "";
@@ -65,7 +64,7 @@ void ssipc_o::send(const string_o& message)  {
         ls << "Connecting to host:" << Host << '\n';
         ls << "Sending on port: " << port << '\n';
         ls << "***************\n";
-        log << ls;
+    //  log << ls;
 
         ss = "";
         ssip3->Serialize(ss);
@@ -78,32 +77,44 @@ void ssipc_o::send(const string_o& message)  {
 
         client_o::send(ss.string());
 
-        yeild();
-
         rs = "";
         while(!rs.contains("\n\n"))  client_o::recv(rs);
         client_o::disconnect();
         ssip3->Deserialize(rs);
         Rqp.put(ssip3);
 
-        yeild();
+        ls = "";
+        ls << "***************\n";
+        ls << "p.Name(): " << ssip3->Name() << '\n';
+        ls << "p.Sequence(): " << ssip3->Sequence() << '\n';
+        ls << "p.RawData(): " << ssip3->RawData() << '\n';
+        ls << "Connecting to host:" << Host << '\n';
+        ls << "Sending on port: " << port << '\n';
+        ls << "***************\n";
+        log << ls;
+
     }
 
 }
 
 
-int ssipc_o::receive(string_o& message)  {
+long int ssipc_o::receive(string_o& message)  {
     ssip_packet_o*  ssippp;
-    int             dl = 0;
+    long int        dl = 0;
+    string_o        slog;
 
     ssip_packetizer_o::reorder(Rqp);
-    
 
-    while(Rqp.cardinality() != 0)  {
-        ssippp = Rqp.get();
-        message << ssippp->RawData();
+    while(ssippp = Rqp++)  {
+
+        (slog="") << ssippp->Sequence() << "    ";
+        slog.fill(ssippp->DataLength(),ssippp->RawData());
+        log << slog;
+
+        message.fill(ssippp->DataLength(),ssippp->RawData());
         dl += ssippp->DataLength();
-        message.cut(dl);
+
+        delete ssippp;
     }
 
     return  dl;
@@ -129,7 +140,6 @@ int main(int argc, char* argv[])  {
 
     ssipc.receive(rs);
 
-    ssipc.disconnect();
 
     ls << "Received: " << rs.string() << '\n';
     log << ls;

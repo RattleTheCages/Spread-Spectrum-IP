@@ -11,6 +11,7 @@
 
 
 
+
                            Copyright 2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -24,7 +25,7 @@
 
 extern log_o log;
 
-ssip_packetizer_o::ssip_packetizer_o()  {}
+ssip_packetizer_o::ssip_packetizer_o():State(2)  {}
 
 ssip_packetizer_o::~ssip_packetizer_o()  {}
 
@@ -59,20 +60,13 @@ void ssip_packetizer_o::packetize(const string_o& message, list_o<ssip_packet_o>
 void ssip_packetizer_o::reorder(list_o<ssip_packet_o>& lop)  {
     bstree_o<ssip_packet_o> pbst;
     ssip_packet_o*          ssip3;
-    string_o                sn;
 
-    while(lop.cardinality() > 0)  {
-        ssip3 = lop.get();
-        sn = ssip3->Sequence();
-        pbst.insert(sn, ssip3);
-    }
+    while(ssip3 = lop++)  pbst.insert(ssip3->Sequence(), ssip3);
 
     bstreeSearch_o<ssip_packet_o> ts(&pbst);
-    ssip3 = ts.sortedListHead();
-    while(ssip3)  {
-        lop.put(ssip3);
-        ssip3 = ts.sortedListNext();
-    }
+    ssip3 = ts.sortedList();
+    lop.put(new ssip_packet_o(*ssip3));
+    while(ssip3 = ts++)  lop.put(new ssip_packet_o(*ssip3));
 }
 
 
@@ -86,7 +80,7 @@ void ssip_packetizer_o::disorder(list_o<ssip_packet_o>& lop)  {
 
         monte = rand.i(22);
         while(monte-- > 0)  {
-            ssip3 = lop.get();     // Spin the wheel of fortune!
+            ssip3 = lop.get();     // Spin the Wheel Of Fortune!
             lop.put(ssip3);
         }
 

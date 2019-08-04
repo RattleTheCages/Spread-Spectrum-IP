@@ -9,6 +9,8 @@
 
 
 
+
+
                            Copyright 2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -25,9 +27,7 @@
 
 class ssip_packetizer_o  {
   protected:
-    string_o            name;
-    int                 sequence;
-    char                rawData[2048];
+    int                 State;
 
   public:
     ssip_packetizer_o();

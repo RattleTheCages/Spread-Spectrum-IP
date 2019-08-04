@@ -8,6 +8,10 @@
             Client
 
 
+
+
+
+
                           Copyright  2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -20,6 +24,7 @@
 #include "thread_o"
 #include "client_o"
 #include "list_o"
+
 #include "ssip-packet_o.h"
 
 
@@ -39,7 +44,7 @@ class ssipc_o : public client_o, private thread_o  {
 
     int        connect(const string_o&);
     void       send(const string_o&);
-    int        receive(string_o&);
+    long int   receive(string_o&);
 };
 
 
