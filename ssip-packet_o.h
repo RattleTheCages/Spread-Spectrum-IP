@@ -46,6 +46,8 @@ class ssip_packet_o  {
     void             Serialize(string_o&);
     void             Deserialize(string_o&);
 
+    int              operator < (ssip_packet_o&);
+
 };
 
 
@@ -77,6 +79,10 @@ inline void ssip_packet_o::setDataLength(const int dl)  {
 
 inline void ssip_packet_o::setName(const string_o n)  {
     name = n;
+}
+
+inline int ssip_packet_o::operator<(ssip_packet_o& s)  {
+    return  this->sequence < s.sequence;
 }
 
 

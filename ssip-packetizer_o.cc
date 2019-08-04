@@ -60,13 +60,23 @@ void ssip_packetizer_o::packetize(const string_o& message, list_o<ssip_packet_o>
 void ssip_packetizer_o::reorder(list_o<ssip_packet_o>& lop)  {
     bstree_o<ssip_packet_o> pbst;
     ssip_packet_o*          ssip3;
+    string_o                n;
 
-    while(ssip3 = lop++)  pbst.insert(ssip3->Sequence(), ssip3);
+
+    while(ssip3 = lop++)  {
+
+        (n="") << ssip3->Sequence();
+        n.justifyRight(9);
+
+        pbst.insert(n, ssip3);
+    }
+
 
     bstreeSearch_o<ssip_packet_o> ts(&pbst);
     ssip3 = ts.sortedList();
     lop.put(new ssip_packet_o(*ssip3));
     while(ssip3 = ts++)  lop.put(new ssip_packet_o(*ssip3));
+
 }
 
 
